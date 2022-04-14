@@ -8,4 +8,7 @@ target/
 *.iml
 *.ipr
 
-.h5
+*.jpg
+*.jpeg
+*.weights
+*.h5
