@@ -5,19 +5,16 @@ from keras.preprocessing import image
 
 
 def load_data():
-    p = Path("./flowers/")
+    p = Path("./data/")
 
     dirs = p.glob("*")
 
     image_data = []
-    labels = []
 
     image_paths = []
 
-    labels_dict = {"daisy": 0, "dandelion": 1, "rose": 2, "sunflower": 3, "tulip": 4}
 
     for folder_dir in dirs:
-        label = str(folder_dir).split('/')[-1]
         # print(label)
 
         cnt = 0
@@ -30,8 +27,6 @@ def load_data():
             img = image.load_img(img_path, target_size=(64, 64))
             img_array = image.img_to_array(img)
             image_data.append(img_array)
-            labels.append(labels_dict[label])
-            cnt += 1
         # print(image_data[0].shape)
         # print(cnt)
 
@@ -39,8 +34,11 @@ def load_data():
     # print(len(labels))
 
     X = np.array(image_data)
-    Y = np.array(labels)
-    return X, Y
+    return X
+
+train_data = load_data()
+print(type(train_data))
+np.save('train_data.npy', train_data)
 
 # Draw some flowers
 # def drawImg(img, label):
